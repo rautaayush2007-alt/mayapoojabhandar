@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products -Maya Pooja Bhandar</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            
+            <!-- LOGO -->
+            <a href="/" id="navbar__logo">
+                <img src="images/logo.png" alt="Maya Pooja Bhandar Logo" class="logo-img">
+                <span class="logo-text">Maya Pooja Bhandar</span>
+            </a>
+            
+            <!-- HAMBURGER -->
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <!-- MENU -->
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">HOME</a>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="/products.html" class="navbar__links">ITEMS</a>
+                </li>
+
+                <li class="navbar__btn">
+                    <a href="/" class="button">SIGN UP</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <!--single product details-->
+<div class="categories">
+    <div class="single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="images/item1.jpeg" width="100%" id="ProductImg">
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="images/item1.jpeg" width="100%" class="smallImg">
+                        <img src="images/item1a.jpeg" width="100%" class="smallImg">
+                        <img src="images/item1b.jpeg" width="100%" class="smallImg">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <h1>Haldi Kumkum Container</h1>
+                <h4>₹30</h4>
+                <h3>Product Details</h3>
+                <p>A beautiful Haldi Kumkum container designed to keep your sacred powders neatly stored and easily accessible.
+                     Perfect for daily pooja, festivals, and traditional ceremonies,
+                      it adds a touch of elegance and devotion to your worship space.</p>
+                      <a 
+  href="https://wa.me/919930444415?text=Hello%20I%20would%20like%20to%20order%20the%20Haldi%20Kumkum%20Container%20priced%20at%20₹30."
+  class="whatsapp-btn"
+  target="_blank"
+>
+    🟢 Order on WhatsApp
+</a>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    
+<img id="ProductImg">
+
+<h1></h1>
+<h4></h4>
+<p></p>
+
+<div class="small-img-col"></div>
+
+    <!-- FOOTER -->
+<footer class="footer">
+    <h3> To Order Contact Us</h3>
+    <p>📞 Phone: <a href="tel:+919930444415">+91 99304 44415</a></p>
+</footer>
+
+    <!-- JAVASCRIPT -->
+    <script src="app.js"></script>
+
+    <!-- ----JS for product gallery---- -->
+     <script>
+    var ProductImg = document.getElementById("ProductImg");
+    var smallImg = document.getElementsByClassName("smallImg");
+
+    for (let i = 0; i < smallImg.length; i++) {
+        smallImg[i].onclick = function () {
+            ProductImg.src = smallImg[i].src;
+        }
+    }
+</script>
+<script>
+const products = {
+    item1: {
+        name: "Haldi Kumkum Container",
+        price: "₹30",
+        image: "images/item1.jpeg",
+        thumbnails: [
+            "images/item1.jpeg",
+            "images/item1a.jpeg",
+            "images/item1b.jpeg"
+        ],
+        description: "A beautiful Haldi Kumkum container designed to keep your sacred powders neatly stored and easily accessible."
+    }
+};
+
+const params = new URLSearchParams(window.location.search);
+const productKey = params.get("product");
+
+if (products[productKey]) {
+    document.getElementById("productName").innerText = products[productKey].name;
+    document.getElementById("productPrice").innerText = products[productKey].price;
+    document.getElementById("ProductImg").src = products[productKey].image;
+    document.getElementById("productDesc").innerText = products[productKey].description;
+
+    const thumbContainer = document.getElementById("thumbnailContainer");
+    thumbContainer.innerHTML = "";
+
+    products[productKey].thumbnails.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.className = "smallImg";
+        img.onclick = () => {
+            document.getElementById("ProductImg").src = src;
+        };
+        thumbContainer.appendChild(img);
+    });
+}
+</script>
+
+</body>
+</html>
